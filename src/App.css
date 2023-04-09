@@ -1,38 +1,96 @@
-.App {
-  text-align: center;
+:root {
+  --main-bg-color: Black;
+  --main-font-color: GhostWhite;
+  --main-hover-color: Gold;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+div {
+  box-sizing: border-box;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#root {
+  background-color: DarkSlateBLue;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-width:350px;
 }
 
-.App-link {
-  color: #61dafb;
+#calculator {
+  width: 80%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+}
+#display {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: var(--main-bg-color);
+  padding: 0.2em;
+  font-family: "Scientific Calculator LCD", sans-serif;
+  font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#display {
+  padding: 0.5em;
+  padding-top:1.5em;
+  padding-bottom:0.7em;
+  color: var(--main-font-color);
+  font-size: 1rem;
+
+}
+#numpad {
+  background-color: var(--main-bg-color);
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.3em;
+  justify-content: center;
+  font-family: Share Tech Mono, monospace;
+  color: var(--main-font-color);
+  font-size: 1.2rem;
+}
+.key {
+  padding: 1em;
+  width: calc(100% / 4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: DimGrey;
+  outline: 1px solid black;
+  cursor: pointer;
+}
+.key:hover {
+  color: gold;
+}
+.key:active {
+  color: gold;
+}
+.double-width {
+  width: calc(100% / 2);
+}
+.double-width:first-of-type {
+  background-color: FireBrick;
+}
+#double-row {
+  display: flex;
+  width: 100%;
+}
+#first-column {
+  display: flex;
+  flex-wrap: wrap;
+  width: 75%;
+}
+#first-column .key {
+  width: calc(100% / 3);
+}
+#first-column .double-width {
+  width: calc(2 / 3 * 100%);
+}
+#second-column {
+  width: 25%;
+}
+#second-column .key {
+  width: 100%;
+  height: 100%;
+  background-color: DarkCyan;
 }
