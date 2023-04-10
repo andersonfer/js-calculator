@@ -67,3 +67,13 @@ it('should update the display when a operator is clicked', async () => {
   expect(screen.getByTestId('display').textContent).toEqual(operatorBtn.textContent);
 });
 
+it('should update the display when the decimal button is clicked', async () => {
+  const decimalBtn = screen.getByRole('button',{name: '.'});
+  const expectedDisplay = '0.'
+
+  await userEvent.click(decimalBtn);
+
+  expect(screen.getByTestId('display').textContent).toEqual(expectedDisplay);
+});
+
+
