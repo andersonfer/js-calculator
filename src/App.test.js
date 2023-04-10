@@ -76,4 +76,24 @@ it('should update the display when the decimal button is clicked', async () => {
   expect(screen.getByTestId('display').textContent).toEqual(expectedDisplay);
 });
 
+it('should clear the display when the AC button is clicked', async () => {
+  const clearBtn = screen.getByRole('button',{name: 'AC'});
+
+  await userEvent.click(getRandomNumberButton());
+  await userEvent.click(clearBtn);
+
+  expect(screen.getByTestId('display').textContent).toEqual('0');
+
+  await userEvent.click(getRandomOperatorButton());
+  await userEvent.click(clearBtn);
+
+  expect(screen.getByTestId('display').textContent).toEqual('0');
+
+  const decimalBtn = screen.getByRole('button',{name: '.'});
+  await userEvent.click(decimalBtn);
+  await userEvent.click(clearBtn);
+
+  expect(screen.getByTestId('display').textContent).toEqual('0');
+
+});
 
