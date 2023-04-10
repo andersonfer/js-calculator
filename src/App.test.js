@@ -72,12 +72,9 @@ it('should update the display when a operator is clicked', async () => {
 });
 
 it('should update the display when the decimal button is clicked', async () => {
-  const decimalBtn = screen.getByRole('button',{name: '.'});
-  const expectedDisplay = '0.'
+  await userEvent.click(getDecimalButton());
 
-  await userEvent.click(decimalBtn);
-
-  expect(screen.getByTestId('display').textContent).toEqual(expectedDisplay);
+  expect(screen.getByTestId('display').textContent).toEqual('0.');
 });
 
 it('should clear the display when the AC button is clicked', async () => {
