@@ -133,7 +133,7 @@ class Display extends React.Component {
 
   render() {
     return (
-      <div id="display">{this.props.input}</div>
+      <div id="display" data-testid="display">{this.props.input}</div>
     );
   }
 }
