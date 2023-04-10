@@ -36,6 +36,10 @@ const getRandomNumberButton = () => {
   return NUMBER_BUTTONS[Math.floor(Math.random() * NUMBER_BUTTONS.length)];
 }
 
+const getRandomOperatorButton = () => {
+  return OPERATOR_BUTTONS[Math.floor(Math.random() * OPERATOR_BUTTONS.length)];
+}
+
 it('should render properly', () => {
   expect(screen.getByTestId('display')).toHaveTextContent('0');
   expect(NUMBER_BUTTONS).toHaveLength(10);
@@ -55,4 +59,11 @@ it('should update the display when a number is clicked', async () => {
   expect(screen.getByTestId('display').textContent).toEqual(numberBtn.textContent);
 });
 
+it('should update the display when a operator is clicked', async () => {
+  const operatorBtn = getRandomOperatorButton();
+
+  await userEvent.click(operatorBtn);
+  //TODO the correct display should be '0' + operatorBtn.textContent
+  expect(screen.getByTestId('display').textContent).toEqual(operatorBtn.textContent);
+});
 
