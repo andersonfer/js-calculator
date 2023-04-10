@@ -40,14 +40,18 @@ const getRandomOperatorButton = () => {
   return OPERATOR_BUTTONS[Math.floor(Math.random() * OPERATOR_BUTTONS.length)];
 }
 
+const getDecimalButton = () => {
+  return screen.getByRole('button',{name: '.'});
+}
+
 it('should render properly', () => {
   expect(screen.getByTestId('display')).toHaveTextContent('0');
   expect(NUMBER_BUTTONS).toHaveLength(10);
   expect(OPERATOR_BUTTONS).toHaveLength(4);
+  expect(getDecimalButton()).toBeInTheDocument();
 
   screen.getByRole('button',{name: 'AC'});
   screen.getByRole('button',{name: '='});
-  screen.getByRole('button',{name: '.'});
 
 });
 
@@ -89,8 +93,7 @@ it('should clear the display when the AC button is clicked', async () => {
 
   expect(screen.getByTestId('display').textContent).toEqual('0');
 
-  const decimalBtn = screen.getByRole('button',{name: '.'});
-  await userEvent.click(decimalBtn);
+  await userEvent.click(getDecimalButton());
   await userEvent.click(clearBtn);
 
   expect(screen.getByTestId('display').textContent).toEqual('0');
