@@ -20,6 +20,7 @@ beforeAll(() =>{
 
 it('should render properly', () => {
   expect(screen.getByTestId('display')).toHaveTextContent('0');
+  expect(NUMBER_BUTTONS).toHaveLength(10);
 
   screen.getByRole('button',{name: 'AC'});
 
