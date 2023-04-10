@@ -45,6 +45,8 @@ div {
   flex-wrap: wrap;
   padding: 0.3em;
   justify-content: center;
+}
+#numpad button{
   font-family: Share Tech Mono, monospace;
   color: var(--main-font-color);
   font-size: 1.2rem;

@@ -146,62 +146,62 @@ class NumPad extends React.Component {
   render() {
     return (
       <div id="numpad">
-        <div id="clear" className="key double-width" onClick={this.clear}>
+        <button id="clear" className="key double-width" onClick={this.clear}>
           AC
-        </div>
-        <div id="divide" className="key" onClick={this.update}>
+        </button>
+        <button id="divide" className="key" onClick={this.update}>
           /
-        </div>
-        <div id="multiply" className="key" onClick={this.update}>
+        </button>
+        <button id="multiply" className="key" onClick={this.update}>
           *
-        </div>
-        <div id="seven" className="key" onClick={this.update}>
+        </button>
+        <button id="seven" className="key" onClick={this.update}>
           7
-        </div>
-        <div id="eight" className="key" onClick={this.update}>
+        </button>
+        <button id="eight" className="key" onClick={this.update}>
           8
-        </div>
-        <div id="nine" className="key" onClick={this.update}>
+        </button>
+        <button id="nine" className="key" onClick={this.update}>
           9
-        </div>
-        <div id="subtract" className="key" onClick={this.update}>
+        </button>
+        <button id="subtract" className="key" onClick={this.update}>
           -
-        </div>
-        <div id="four" className="key" onClick={this.update}>
+        </button>
+        <button id="four" className="key" onClick={this.update}>
           4
-        </div>
-        <div id="five" className="key" onClick={this.update}>
+        </button>
+        <button id="five" className="key" onClick={this.update}>
           5
-        </div>
-        <div id="six" className="key" onClick={this.update}>
+        </button>
+        <button id="six" className="key" onClick={this.update}>
           6
-        </div>
-        <div id="add" className="key" onClick={this.update}>
+        </button>
+        <button id="add" className="key" onClick={this.update}>
           +
-        </div>
+        </button>
         <div id="double-row">
           <div id="first-column">
-            <div id="one" className="key" onClick={this.update}>
+            <button id="one" className="key" onClick={this.update}>
               1
-            </div>
-            <div id="two" className="key" onClick={this.update}>
+            </button>
+            <button id="two" className="key" onClick={this.update}>
               2
-            </div>
-            <div id="three" className="key" onClick={this.update}>
+            </button>
+            <button id="three" className="key" onClick={this.update}>
               3
-            </div>
+            </button>
 
-            <div id="zero" className="key double-width" onClick={this.update}>
+            <button id="zero" className="key double-width" onClick={this.update}>
               0
-            </div>
-            <div id="decimal" className="key" onClick={this.update}>
+            </button>
+            <button id="decimal" className="key" onClick={this.update}>
               .
-            </div>
+            </button>
           </div>
           <div id="second-column">
-            <div id="equals" className="key" onClick={this.update}>
+            <button id="equals" className="key" onClick={this.update}>
               =
-            </div>
+            </button>
           </div>
         </div>
       </div>
