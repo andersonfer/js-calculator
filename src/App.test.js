@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
+import {MAX_DISPLAY_LENGTH} from './App';
 
 const NUMBER_BUTTONS = [];
 const OPERATOR_BUTTONS = [];
@@ -96,4 +97,14 @@ it('should clear the display when the AC button is clicked', async () => {
   expect(screen.getByTestId('display').textContent).toEqual('0');
 
 });
+
+it('should display an error message when the max length is reached', async () => {
+
+  for(let i = 0; i < MAX_DISPLAY_LENGTH+1; i++){
+    await userEvent.click(getRandomNumberButton());
+  }
+
+  expect(screen.getByTestId('display').textContent).toEqual('MAX');
+});
+
 

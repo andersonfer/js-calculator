@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import * as mathjs from "mathjs";
 
-const MAX_DISPLAY_LENGTH = 15;
+export const MAX_DISPLAY_LENGTH = 15;
 class App extends React.Component {
   constructor(props) {
     super(props);
