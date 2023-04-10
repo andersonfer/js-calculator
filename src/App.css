@@ -46,25 +46,24 @@ div {
   padding: 0.3em;
   justify-content: center;
 }
+.key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / 4);
+  background-color: DimGrey;
+}
 #numpad button{
   font-family: Share Tech Mono, monospace;
   color: var(--main-font-color);
   font-size: 1.2rem;
-}
-.key {
   padding: 1em;
-  width: calc(100% / 4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: DimGrey;
-  outline: 1px solid black;
   cursor: pointer;
 }
-.key:hover {
+#numpad button:hover {
   color: gold;
 }
-.key:active {
+#numpad button:active {
   color: gold;
 }
 .double-width {
