@@ -26,6 +26,12 @@ beforeEach(() =>{
 
 });
 
+afterEach(() =>{
+  //this empty the arrays
+  NUMBER_BUTTONS.length = 0;
+  OPERATOR_BUTTONS.length = 0;
+})
+
 const getRandomNumberButton = () => {
   return NUMBER_BUTTONS[Math.floor(Math.random() * NUMBER_BUTTONS.length)];
 }
