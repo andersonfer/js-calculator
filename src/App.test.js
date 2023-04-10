@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import App from './App';
 
 const NUMBER_BUTTONS = [];
+const OPERATOR_BUTTONS = [];
 
 beforeEach(() =>{
   render(<App />);
@@ -17,6 +18,12 @@ beforeEach(() =>{
   NUMBER_BUTTONS.push(screen.getByRole('button',{name: '7'}));
   NUMBER_BUTTONS.push(screen.getByRole('button',{name: '8'}));
   NUMBER_BUTTONS.push(screen.getByRole('button',{name: '9'}));
+
+  OPERATOR_BUTTONS.push(screen.getByRole('button',{name: '/'}));
+  OPERATOR_BUTTONS.push(screen.getByRole('button',{name: '*'}));
+  OPERATOR_BUTTONS.push(screen.getByRole('button',{name: '-'}));
+  OPERATOR_BUTTONS.push(screen.getByRole('button',{name: '+'}));
+
 });
 
 const getRandomNumberButton = () => {
@@ -26,13 +33,9 @@ const getRandomNumberButton = () => {
 it('should render properly', () => {
   expect(screen.getByTestId('display')).toHaveTextContent('0');
   expect(NUMBER_BUTTONS).toHaveLength(10);
+  expect(OPERATOR_BUTTONS).toHaveLength(4);
 
   screen.getByRole('button',{name: 'AC'});
-
-  screen.getByRole('button',{name: '/'});
-  screen.getByRole('button',{name: '*'});
-  screen.getByRole('button',{name: '-'});
-  screen.getByRole('button',{name: '+'});
   screen.getByRole('button',{name: '='});
   screen.getByRole('button',{name: '.'});
 
@@ -45,3 +48,5 @@ it('should update the display when a number is clicked', async () => {
 
   expect(screen.getByTestId('display').textContent).toEqual(numberBtn.textContent);
 });
+
+
