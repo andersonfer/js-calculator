@@ -3,7 +3,7 @@ import App from './App';
 
 const NUMBER_BUTTONS = [];
 
-beforeAll(() =>{
+beforeEach(() =>{
   render(<App />);
 
   NUMBER_BUTTONS.push(screen.getByRole('button',{name: '0'}));
