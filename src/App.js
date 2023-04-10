@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from './logo.svg';
 import './App.css';
-import * as mathjs from "https://cdn.skypack.dev/mathjs@11.5.0";
+import * as mathjs from "mathjs";
 
 const MAX_DISPLAY_LENGTH = 15;
 class App extends React.Component {
