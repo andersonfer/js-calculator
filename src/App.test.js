@@ -9,7 +9,7 @@ const getRandomNumber = () => {
   return screen.getByRole('button',{name: randomNumberFrom1to9});
 }
 
-const getRandomOperatorButton = () => {
+const getRandomOperator = () => {
   //the negative sign can be an edge case and will be dealt with another tests
   const operators = ['/','*','+'];
   const randomOperator = operators[Math.floor(Math.random() * operators.length)]
@@ -61,7 +61,7 @@ it('should update the display when a number is clicked', async () => {
 it('should update the display when a operator is clicked', async () => {
   render(<App />);
 
-  const operatorBtn = getRandomOperatorButton();
+  const operatorBtn = getRandomOperator();
 
   await userEvent.click(operatorBtn);
   //TODO the correct display should be '0' + operatorBtn.textContent
@@ -86,7 +86,7 @@ it('should clear the display when the AC button is clicked', async () => {
 
   expect(screen.getByTestId('display').textContent).toEqual('0');
 
-  await userEvent.click(getRandomOperatorButton());
+  await userEvent.click(getRandomOperator());
   await userEvent.click(clearBtn);
 
   expect(screen.getByTestId('display').textContent).toEqual('0');
@@ -116,7 +116,7 @@ it('should reject two decimals in the same number', async () => {
   await userEvent.click(getRandomNumber());
   await userEvent.click(getDecimalButton());
 
-  await userEvent.click(getRandomOperatorButton());
+  await userEvent.click(getRandomOperator());
 
   await userEvent.click(getRandomNumber());
   await userEvent.click(getDecimalButton());
@@ -141,7 +141,7 @@ it('should perform basic operations', async() => {
   await userEvent.click(getRandomNumber());
   await userEvent.click(getRandomNumber());
 
-  await userEvent.click(getRandomOperatorButton());
+  await userEvent.click(getRandomOperator());
 
   await userEvent.click(getRandomNumber());
   await userEvent.click(getRandomNumber());
@@ -170,7 +170,7 @@ it('should handle negative number operations', async() => {
   //case -x operator -y
   await userEvent.click(minusButton);
   await userEvent.click(getRandomNumber());
-  await userEvent.click(getRandomOperatorButton());
+  await userEvent.click(getRandomOperator());
   await userEvent.click(minusButton);
   await userEvent.click(getRandomNumber());
 
