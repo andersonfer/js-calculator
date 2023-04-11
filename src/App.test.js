@@ -175,8 +175,16 @@ it('should handle negative number operations', async() => {
   await userEvent.click(getRandomNumberButton());
 
   const negativeCount = screen.getByTestId('display').textContent.split('-').length - 1;
-
   expect(negativeCount).toEqual(2);
+
+  const operation = screen.getByTestId('display').textContent;
+  expect(operation).not.toEqual('0');
+
+  const equalSign = screen.getByRole('button',{name: '='});
+  await userEvent.click(equalSign);
+
+  const result = screen.getByTestId('display').textContent;
+  expect(result).not.toEqual(operation);
 
 });
 
