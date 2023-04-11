@@ -34,7 +34,8 @@ afterEach(() =>{
 })
 
 const getRandomNumberButton = () => {
-  return NUMBER_BUTTONS[Math.floor(Math.random() * NUMBER_BUTTONS.length)];
+  const randomNumber = Math.floor(Math.random() * 10);
+  return screen.getByRole('button',{name: randomNumber.toString()});
 }
 
 const getRandomOperatorButton = () => {
