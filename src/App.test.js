@@ -111,16 +111,6 @@ it('should display an error message when the max length is reached', async () =>
 it('should reject two decimals in the same number', async () => {
   render(<App />);
 
-  const dotCount = (str) => {
-    let count = 0;
-    for(let c of str){
-      if(c === '.'){
-        count++;
-      }
-    }
-    return count;
-  }
-
   await userEvent.click(getRandomNumberButton());
   await userEvent.click(getDecimalButton());
   await userEvent.click(getRandomNumberButton());
@@ -134,7 +124,9 @@ it('should reject two decimals in the same number', async () => {
   await userEvent.click(getDecimalButton());
   await userEvent.click(getRandomNumberButton());
 
- expect(dotCount(screen.getByTestId('display').textContent)).toEqual(2);
+  const dotCount = screen.getByTestId('display').textContent.split('.').length - 1;
+
+  expect(dotCount).toEqual(2);
 
 });
 
