@@ -130,3 +130,20 @@ it('should reject two decimals in the same number', async () => {
 
 });
 
+it('should handle negative number operations', async() => {
+  render(<App />);
+
+  const minusButton = screen.getByRole('button',{name: '-'});
+  //case -x operator -y
+  await userEvent.click(minusButton);
+  await userEvent.click(getRandomNumberButton());
+  await userEvent.click(getRandomOperatorButton());
+  await userEvent.click(minusButton);
+  await userEvent.click(getRandomNumberButton());
+
+  const negativeCount = screen.getByTestId('display').textContent.split('-').length - 1;
+
+  expect(negativeCount).toEqual(2);
+
+});
+
