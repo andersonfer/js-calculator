@@ -1,5 +1,4 @@
 import React from 'react'
-import logo from './logo.svg';
 import './App.css';
 import * as mathjs from "mathjs";
 
@@ -46,7 +45,7 @@ class App extends React.Component {
     return input.length >= MAX_DISPLAY_LENGTH;
   }
 
-  isEqualSign = (key) => {return '=' == key};
+  isEqualSign = (key) => {return '=' === key};
 
   evaluateExpression = () => {
     const parser = mathjs.parser();
@@ -61,12 +60,12 @@ class App extends React.Component {
     }));
   }
 
-  isNegativeSign = (key) => {return '-' == key};
+  isNegativeSign = (key) => {return '-' === key};
 
   updateNegativeSign(key){
     this.setState((state) => ({
       input:
-        state.input == 0?
+        state.input === 0?
         key:
         //if the last element is a number
         this.isNumber(state.input[state.input.length-1]) ?
@@ -99,7 +98,7 @@ class App extends React.Component {
   updateDecimal(key){
     //get the lastNumber in the expression and check if it already has decimal
     //TODO this expression ignores the negative sign, should fix this
-    const lastNumber = this.state.input.split(/\+|\-|\*|\//).pop();
+    const lastNumber = this.state.input.split(/\+|-|\*|\//).pop();
     if(lastNumber && lastNumber.indexOf(key) === -1){
       this.setState((state) => ({
       input: state.input.concat(key),
@@ -113,7 +112,7 @@ class App extends React.Component {
   updateNumber(key){
     this.setState((state) => ({
       input:
-        state.input == '0' || state.resetExpression ? key:
+        state.input === '0' || state.resetExpression ? key:
         state.input.concat(key),
       resetExpression:false
     }));
@@ -127,10 +126,6 @@ class App extends React.Component {
 }
 
 class Display extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div id="display" data-testid="display">{this.props.input}</div>
@@ -139,10 +134,6 @@ class Display extends React.Component {
 }
 
 class NumPad extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div id="numpad">
