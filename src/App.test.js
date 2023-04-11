@@ -39,7 +39,9 @@ const getRandomNumberButton = () => {
 }
 
 const getRandomOperatorButton = () => {
-  return OPERATOR_BUTTONS[Math.floor(Math.random() * OPERATOR_BUTTONS.length)];
+  const operators = ['/','*','-','+'];
+  const randomOperator = operators[Math.floor(Math.random() * operators.length)]
+  return screen.getByRole('button',{name: randomOperator});
 }
 
 const getDecimalButton = () => {
