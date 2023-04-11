@@ -132,7 +132,6 @@ it('should reject two decimals in the same number', async () => {
 
 it('should perform basic operations', async() => {
   render(<App />);
-  const equalSign = screen.getByRole('button',{name: '='});
 
   //case xx.xx operator yy.yy
   await userEvent.click(getRandomNumber());
@@ -150,17 +149,16 @@ it('should perform basic operations', async() => {
   await userEvent.click(getRandomNumber());
 
   const operation = screen.getByTestId('display').textContent;
-
   expect(operation).not.toEqual('0');
 
+  const equalSign = screen.getByRole('button',{name: '='});
   await userEvent.click(equalSign);
 
   const result = screen.getByTestId('display').textContent;
+  expect(result).not.toEqual(operation);
 
   //TODO this should work
   //expect(Number(result)).toEqual(eval(operation));
-
-  expect(result).not.toEqual(operation);
 });
 
 it('should handle negative number operations', async() => {
