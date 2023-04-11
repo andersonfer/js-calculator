@@ -22,7 +22,13 @@ class App extends React.Component {
   }
 
   updateDisplay = (key) => {
-    if (!this.hasReachedMaximumLength(this.state.input)){
+    if (this.hasReachedMaximumLength(this.state.input)){
+      this.setState({
+        input:'MAX',
+        resetExpression:true
+      }
+      );
+    } else {
       return this.isEqualSign(key)?
              this.evaluateExpression():
              this.isNegativeSign(key)?
@@ -32,12 +38,6 @@ class App extends React.Component {
              this.isDecimal(key)?
              this.updateDecimal(key):
              this.updateNumber(key);
-    } else {
-      this.setState({
-        input:'MAX',
-        resetExpression:true
-      }
-      );
     }
   };
 
