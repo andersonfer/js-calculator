@@ -3,22 +3,10 @@ import userEvent from '@testing-library/user-event';
 import App from './App';
 import {MAX_DISPLAY_LENGTH} from './App';
 
-const NUMBER_BUTTONS = [];
 const OPERATOR_BUTTONS = [];
 
 beforeEach(() =>{
   render(<App />);
-
-  NUMBER_BUTTONS.push(screen.getByRole('button',{name: '0'}));
-  NUMBER_BUTTONS.push(screen.getByRole('button',{name: '1'}));
-  NUMBER_BUTTONS.push(screen.getByRole('button',{name: '2'}));
-  NUMBER_BUTTONS.push(screen.getByRole('button',{name: '3'}));
-  NUMBER_BUTTONS.push(screen.getByRole('button',{name: '4'}));
-  NUMBER_BUTTONS.push(screen.getByRole('button',{name: '5'}));
-  NUMBER_BUTTONS.push(screen.getByRole('button',{name: '6'}));
-  NUMBER_BUTTONS.push(screen.getByRole('button',{name: '7'}));
-  NUMBER_BUTTONS.push(screen.getByRole('button',{name: '8'}));
-  NUMBER_BUTTONS.push(screen.getByRole('button',{name: '9'}));
 
   OPERATOR_BUTTONS.push(screen.getByRole('button',{name: '/'}));
   OPERATOR_BUTTONS.push(screen.getByRole('button',{name: '*'}));
@@ -29,7 +17,6 @@ beforeEach(() =>{
 
 afterEach(() =>{
   //this empty the arrays
-  NUMBER_BUTTONS.length = 0;
   OPERATOR_BUTTONS.length = 0;
 })
 
@@ -50,11 +37,20 @@ const getDecimalButton = () => {
 
 it('should render properly', () => {
   expect(screen.getByTestId('display')).toHaveTextContent('0');
-  expect(NUMBER_BUTTONS).toHaveLength(10);
   expect(OPERATOR_BUTTONS).toHaveLength(4);
   expect(getDecimalButton()).toBeInTheDocument();
 
   screen.getByRole('button',{name: 'AC'});
+  screen.getByRole('button',{name: '0'})
+  screen.getByRole('button',{name: '1'})
+  screen.getByRole('button',{name: '2'})
+  screen.getByRole('button',{name: '3'})
+  screen.getByRole('button',{name: '4'})
+  screen.getByRole('button',{name: '5'})
+  screen.getByRole('button',{name: '6'})
+  screen.getByRole('button',{name: '7'})
+  screen.getByRole('button',{name: '8'})
+  screen.getByRole('button',{name: '9'})
   screen.getByRole('button',{name: '='});
 
 });
