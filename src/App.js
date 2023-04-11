@@ -125,12 +125,10 @@ class App extends React.Component {
   }
 }
 
-class Display extends React.Component {
-  render() {
-    return (
-      <div id="display" data-testid="display">{this.props.input}</div>
-    );
-  }
+function Display({input}){
+  return (
+    <div id="display" data-testid="display">{input}</div>
+  );
 }
 
 class NumPad extends React.Component {
