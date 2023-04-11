@@ -3,14 +3,10 @@ import userEvent from '@testing-library/user-event';
 import App from './App';
 import {MAX_DISPLAY_LENGTH} from './App';
 
-
-beforeEach(() =>{
-  render(<App />);
-});
-
 const getRandomNumberButton = () => {
-  const randomNumber = Math.floor(Math.random() * 10);
-  return screen.getByRole('button',{name: randomNumber.toString()});
+  //the number zero can be an edge case and will be deatl with in other tests
+  const randomNumberFrom1to9 = Math.floor(Math.random() * 9) + 1;
+  return screen.getByRole('button',{name: randomNumberFrom1to9.toString()});
 }
 
 const getRandomOperatorButton = () => {
@@ -24,6 +20,8 @@ const getDecimalButton = () => {
 }
 
 it('should render properly', () => {
+  render(<App />);
+
   expect(screen.getByTestId('display')).toHaveTextContent('0');
 
   screen.getByRole('button',{name: 'AC'});
@@ -50,6 +48,8 @@ it('should render properly', () => {
 });
 
 it('should update the display when a number is clicked', async () => {
+  render(<App />);
+
   const numberBtn = getRandomNumberButton();
 
   await userEvent.click(numberBtn);
@@ -58,6 +58,8 @@ it('should update the display when a number is clicked', async () => {
 });
 
 it('should update the display when a operator is clicked', async () => {
+  render(<App />);
+
   const operatorBtn = getRandomOperatorButton();
 
   await userEvent.click(operatorBtn);
@@ -66,12 +68,16 @@ it('should update the display when a operator is clicked', async () => {
 });
 
 it('should update the display when the decimal button is clicked', async () => {
+  render(<App />);
+
   await userEvent.click(getDecimalButton());
 
   expect(screen.getByTestId('display').textContent).toEqual('0.');
 });
 
 it('should clear the display when the AC button is clicked', async () => {
+  render(<App />);
+
   const clearBtn = screen.getByRole('button',{name: 'AC'});
 
   await userEvent.click(getRandomNumberButton());
@@ -92,6 +98,7 @@ it('should clear the display when the AC button is clicked', async () => {
 });
 
 it('should display an error message when the max length is reached', async () => {
+  render(<App />);
 
   for(let i = 0; i < MAX_DISPLAY_LENGTH+1; i++){
     await userEvent.click(getRandomNumberButton());
@@ -101,6 +108,7 @@ it('should display an error message when the max length is reached', async () =>
 });
 
 it('should reject two decimals in the same number', async () => {
+  render(<App />);
 
   const dotCount = (str) => {
     let count = 0;
