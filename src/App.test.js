@@ -4,7 +4,7 @@ import App from './App';
 import {MAX_DISPLAY_LENGTH} from './App';
 
 const getRandomNumberButton = () => {
-  //the number zero can be an edge case and will be deatl with in other tests
+  //the number zero can be an edge case and will be dealt with in other tests
   const randomNumberFrom1to9 = Math.floor(Math.random() * 9) + 1;
   return screen.getByRole('button',{name: randomNumberFrom1to9});
 }
