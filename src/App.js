@@ -29,15 +29,15 @@ class App extends React.Component {
       }
       );
     } else {
-      return this.isEqualSign(key)?
-             this.evaluateExpression():
-             this.isNegativeSign(key)?
-             this.updateNegativeSign(key):
-             this.isOperator(key)?
-             this.updateOperator(key):
-             this.isDecimal(key)?
-             this.updateDecimal(key):
-             this.updateNumber(key);
+      this.isEqualSign(key)?
+      this.evaluateExpression():
+      this.isNegativeSign(key)?
+      this.updateNegativeSign(key):
+      this.isOperator(key)?
+      this.updateOperator(key):
+      this.isDecimal(key)?
+      this.updateDecimal(key):
+      this.updateNumber(key);
     }
   };
 
