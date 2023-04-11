@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import App from './App';
 import {MAX_DISPLAY_LENGTH} from './App';
 
-const getRandomNumberButton = () => {
+const getRandomNumber = () => {
   //the number zero can be an edge case and will be dealt with in other tests
   const randomNumberFrom1to9 = Math.floor(Math.random() * 9) + 1;
   return screen.getByRole('button',{name: randomNumberFrom1to9});
@@ -51,7 +51,7 @@ it('should render properly', () => {
 it('should update the display when a number is clicked', async () => {
   render(<App />);
 
-  const numberBtn = getRandomNumberButton();
+  const numberBtn = getRandomNumber();
 
   await userEvent.click(numberBtn);
 
@@ -81,7 +81,7 @@ it('should clear the display when the AC button is clicked', async () => {
 
   const clearBtn = screen.getByRole('button',{name: 'AC'});
 
-  await userEvent.click(getRandomNumberButton());
+  await userEvent.click(getRandomNumber());
   await userEvent.click(clearBtn);
 
   expect(screen.getByTestId('display').textContent).toEqual('0');
@@ -102,7 +102,7 @@ it('should display an error message when the max length is reached', async () =>
   render(<App />);
 
   for(let i = 0; i < MAX_DISPLAY_LENGTH+1; i++){
-    await userEvent.click(getRandomNumberButton());
+    await userEvent.click(getRandomNumber());
   }
 
   expect(screen.getByTestId('display').textContent).toEqual('MAX');
@@ -111,18 +111,18 @@ it('should display an error message when the max length is reached', async () =>
 it('should reject two decimals in the same number', async () => {
   render(<App />);
 
-  await userEvent.click(getRandomNumberButton());
+  await userEvent.click(getRandomNumber());
   await userEvent.click(getDecimalButton());
-  await userEvent.click(getRandomNumberButton());
+  await userEvent.click(getRandomNumber());
   await userEvent.click(getDecimalButton());
 
   await userEvent.click(getRandomOperatorButton());
 
-  await userEvent.click(getRandomNumberButton());
+  await userEvent.click(getRandomNumber());
   await userEvent.click(getDecimalButton());
-  await userEvent.click(getRandomNumberButton());
+  await userEvent.click(getRandomNumber());
   await userEvent.click(getDecimalButton());
-  await userEvent.click(getRandomNumberButton());
+  await userEvent.click(getRandomNumber());
 
   const dotCount = screen.getByTestId('display').textContent.split('.').length - 1;
 
@@ -135,19 +135,19 @@ it('should perform basic operations', async() => {
   const equalSign = screen.getByRole('button',{name: '='});
 
   //case xx.xx operator yy.yy
-  await userEvent.click(getRandomNumberButton());
-  await userEvent.click(getRandomNumberButton());
+  await userEvent.click(getRandomNumber());
+  await userEvent.click(getRandomNumber());
   await userEvent.click(getDecimalButton());
-  await userEvent.click(getRandomNumberButton());
-  await userEvent.click(getRandomNumberButton());
+  await userEvent.click(getRandomNumber());
+  await userEvent.click(getRandomNumber());
 
   await userEvent.click(getRandomOperatorButton());
 
-  await userEvent.click(getRandomNumberButton());
-  await userEvent.click(getRandomNumberButton());
+  await userEvent.click(getRandomNumber());
+  await userEvent.click(getRandomNumber());
   await userEvent.click(getDecimalButton());
-  await userEvent.click(getRandomNumberButton());
-  await userEvent.click(getRandomNumberButton());
+  await userEvent.click(getRandomNumber());
+  await userEvent.click(getRandomNumber());
 
   const operation = screen.getByTestId('display').textContent;
 
@@ -169,10 +169,10 @@ it('should handle negative number operations', async() => {
   const minusButton = screen.getByRole('button',{name: '-'});
   //case -x operator -y
   await userEvent.click(minusButton);
-  await userEvent.click(getRandomNumberButton());
+  await userEvent.click(getRandomNumber());
   await userEvent.click(getRandomOperatorButton());
   await userEvent.click(minusButton);
-  await userEvent.click(getRandomNumberButton());
+  await userEvent.click(getRandomNumber());
 
   const negativeCount = screen.getByTestId('display').textContent.split('-').length - 1;
   expect(negativeCount).toEqual(2);
