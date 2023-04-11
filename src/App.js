@@ -131,79 +131,76 @@ function Display({input}){
   );
 }
 
-class NumPad extends React.Component {
-  render() {
-    return (
-      <div id="numpad">
-        <button id="clear" className="key double-width" onClick={this.clear}>
-          AC
-        </button>
-        <button id="divide" className="key" onClick={this.update}>
-          /
-        </button>
-        <button id="multiply" className="key" onClick={this.update}>
-          *
-        </button>
-        <button id="seven" className="key" onClick={this.update}>
-          7
-        </button>
-        <button id="eight" className="key" onClick={this.update}>
-          8
-        </button>
-        <button id="nine" className="key" onClick={this.update}>
-          9
-        </button>
-        <button id="subtract" className="key" onClick={this.update}>
-          -
-        </button>
-        <button id="four" className="key" onClick={this.update}>
-          4
-        </button>
-        <button id="five" className="key" onClick={this.update}>
-          5
-        </button>
-        <button id="six" className="key" onClick={this.update}>
-          6
-        </button>
-        <button id="add" className="key" onClick={this.update}>
-          +
-        </button>
-        <div id="double-row">
-          <div id="first-column">
-            <button id="one" className="key" onClick={this.update}>
-              1
-            </button>
-            <button id="two" className="key" onClick={this.update}>
-              2
-            </button>
-            <button id="three" className="key" onClick={this.update}>
-              3
-            </button>
+function NumPad({onClick, onClear}){
+  function clear(){
+    onClear();
+  }
 
-            <button id="zero" className="key double-width" onClick={this.update}>
-              0
-            </button>
-            <button id="decimal" className="key" onClick={this.update}>
-              .
-            </button>
-          </div>
-          <div id="second-column">
-            <button id="equals" className="key" onClick={this.update}>
-              =
-            </button>
-          </div>
+  function update(e){
+    onClick(e.target.innerHTML);
+  }
+  return (
+    <div id="numpad">
+      <button id="clear" className="key double-width" onClick={clear}>
+        AC
+      </button>
+      <button id="divide" className="key" onClick={update}>
+        /
+      </button>
+      <button id="multiply" className="key" onClick={update}>
+        *
+      </button>
+      <button id="seven" className="key" onClick={update}>
+        7
+      </button>
+      <button id="eight" className="key" onClick={update}>
+        8
+      </button>
+      <button id="nine" className="key" onClick={update}>
+        9
+      </button>
+      <button id="subtract" className="key" onClick={update}>
+        -
+      </button>
+      <button id="four" className="key" onClick={update}>
+        4
+      </button>
+      <button id="five" className="key" onClick={update}>
+        5
+      </button>
+      <button id="six" className="key" onClick={update}>
+        6
+      </button>
+      <button id="add" className="key" onClick={update}>
+        +
+      </button>
+      <div id="double-row">
+        <div id="first-column">
+          <button id="one" className="key" onClick={update}>
+            1
+          </button>
+          <button id="two" className="key" onClick={update}>
+            2
+          </button>
+          <button id="three" className="key" onClick={update}>
+            3
+          </button>
+
+          <button id="zero" className="key double-width" onClick={update}>
+            0
+          </button>
+          <button id="decimal" className="key" onClick={update}>
+            .
+          </button>
+        </div>
+        <div id="second-column">
+          <button id="equals" className="key" onClick={update}>
+            =
+          </button>
         </div>
       </div>
-    );
-  }
-
-  clear = (e) => {
-    this.props.onClear();
-  }
-
-  update = (e) => {
-    this.props.onClick(e.target.innerHTML);
-  }
+    </div>
+  );
 }
 
 export default App;
