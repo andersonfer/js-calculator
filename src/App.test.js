@@ -25,7 +25,6 @@ const getDecimalButton = () => {
 
 it('should render properly', () => {
   expect(screen.getByTestId('display')).toHaveTextContent('0');
-  expect(getDecimalButton()).toBeInTheDocument();
 
   screen.getByRole('button',{name: 'AC'});
 
@@ -44,6 +43,7 @@ it('should render properly', () => {
   screen.getByRole('button',{name: '*'});
   screen.getByRole('button',{name: '-'});
   screen.getByRole('button',{name: '+'});
+  screen.getByRole('button',{name: '.'});
 
   screen.getByRole('button',{name: '='});
 
