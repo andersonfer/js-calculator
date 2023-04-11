@@ -10,7 +10,8 @@ const getRandomNumberButton = () => {
 }
 
 const getRandomOperatorButton = () => {
-  const operators = ['/','*','-','+'];
+  //the negative sign can be an edge case and will be dealt with another tests
+  const operators = ['/','*','+'];
   const randomOperator = operators[Math.floor(Math.random() * operators.length)]
   return screen.getByRole('button',{name: randomOperator});
 }
