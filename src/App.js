@@ -32,8 +32,15 @@ function App() {
   };
 
   const handleOperatorClick = (e) => {
-    const {value} = e.target;
-    return updateOperator(value);
+    const value = e.target.value;
+    setInput((state) => {
+      return state !== 0 && isNumber(state[state.length - 1])
+        ? state.concat(value)
+        : isOperator(state[state.length - 1]) && isOperator(state[state.length - 2])
+        ? state.substr(0, state.length - 2).concat(value)
+        : state.substr(0, state.length - 1).concat(value);
+    });
+    setResetExpression(false);
   };
 
   const isNegativeSign = (value) => {
@@ -59,17 +66,6 @@ function App() {
 
   const isOperator = (value) => {
     return ['+', '*', '-', '/'].includes(value);
-  };
-
-  const updateOperator = (value) => {
-    setInput((state) => {
-      return state !== 0 && isNumber(state[state.length - 1])
-        ? state.concat(value)
-        : isOperator(state[state.length - 1]) && isOperator(state[state.length - 2])
-        ? state.substr(0, state.length - 2).concat(value)
-        : state.substr(0, state.length - 1).concat(value);
-    });
-    setResetExpression(false);
   };
 
   const handleDecimalClick = () => {
