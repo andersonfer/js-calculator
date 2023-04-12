@@ -32,13 +32,13 @@ function App() {
   };
 
   const handleOperatorClick = (e) => {
-    const value = e.target.value;
+    const operator = e.target.value;
     setInput((input) => {
       return input !== 0 && isNumber(input[input.length - 1])
-        ? input.concat(value)
+        ? input.concat(operator)
         : isOperator(input[input.length - 1]) && isOperator(input[input.length - 2])
-        ? input.substr(0, input.length - 2).concat(value)
-        : input.substr(0, input.length - 1).concat(value);
+        ? input.substr(0, input.length - 2).concat(operator)
+        : input.substr(0, input.length - 1).concat(operator);
     });
     setShouldResetDisplay(false);
   };
