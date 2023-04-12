@@ -62,10 +62,10 @@ it('should update the display when a operator is clicked', async () => {
   render(<App />);
 
   const operatorBtn = getRandomOperator();
+  const expectedDisplay = '0' + operatorBtn.textContent;
 
   await userEvent.click(operatorBtn);
-  //TODO the correct display should be '0' + operatorBtn.textContent
-  expect(screen.getByTestId('display').textContent).toEqual(operatorBtn.textContent);
+  expect(screen.getByTestId('display').textContent).toEqual(expectedDisplay);
 });
 
 it('should update the display when the decimal button is clicked', async () => {

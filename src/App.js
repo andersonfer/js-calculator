@@ -65,7 +65,7 @@ function App() {
 
   const updateOperator = (value) => {
     setInput((state) => {
-      return state != 0 && isNumber(state[state.length - 1])
+      return state !== 0 && isNumber(state[state.length - 1])
         ? state.concat(value)
         : isOperator(state[state.length - 1]) && isOperator(state[state.length - 2])
         ? state.substr(0, state.length - 2).concat(value)
