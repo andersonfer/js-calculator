@@ -56,14 +56,21 @@ function App() {
   };
 
   const handleMinusSign = () => {
-    setInput((input) => {
-      return input === '0'
-        ? '-'
-        : isNumber(input[input.length - 1])
-        ? input.concat('-')
-        : isOperator(input[input.length - 1]) && isNumber(input[input.length - 2])
-        ? input.concat('-')
-        : input;
+    setInput((currentInput) => {
+      // If the current input is 0, replace it with a minus sign
+      if(currentInput === '0') {
+        return '-';
+      // If the last character is a number, concatenate a minus sign to the input
+      } else if(isNumber(currentInput[currentInput.length - 1])) {
+        return currentInput.concat('-');
+      // If the last character is an operator and the second-to-last character is a number, concatenate a minus sign to the input
+      } else if(isOperator(currentInput[currentInput.length - 1])
+                  && isNumber(currentInput[currentInput.length - 2])){
+        return currentInput.concat('-');
+      // Otherwise, return the current input
+      } else {
+        return currentInput;
+      }
     });
     setShouldResetDisplay(false);
   };
