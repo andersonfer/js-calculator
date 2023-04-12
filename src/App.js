@@ -10,7 +10,7 @@ function App() {
 
   useEffect(() => {
     if (hasReachedMaximumLength(input)) {
-      setInput('MAX');
+      setInput('MAX_LENGTH_REACHED');
       setResetExpression(true);
     }
   },[input]);

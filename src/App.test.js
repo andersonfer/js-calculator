@@ -105,7 +105,7 @@ it('should display an error message when the max length is reached', async () =>
     await userEvent.click(getRandomNumber());
   }
 
-  expect(screen.getByTestId('display').textContent).toEqual('MAX');
+  expect(screen.getByTestId('display').textContent).toEqual('MAX_LENGTH_REACHED');
 });
 
 it('should reject two decimals in the same number', async () => {
