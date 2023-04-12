@@ -91,7 +91,7 @@ function App() {
     setResetExpression(false);
   };
 
-  const clearDisplay = () => {
+  const handleClearClick = () => {
     setInput('0');
   };
 
@@ -99,7 +99,7 @@ function App() {
     <div id="calculator">
       <div id="display" data-testid="display">{input}</div>
       <div id="numpad">
-        <button id="clear" className="key double-width" onClick={clearDisplay}>
+        <button id="clear" className="key double-width" onClick={handleClearClick}>
           AC
         </button>
         <button id="divide" value="/" className="key" onClick={handleOperatorClick}>
