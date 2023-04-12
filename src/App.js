@@ -43,10 +43,6 @@ function App() {
     setShouldResetDisplay(false);
   };
 
-  const isNegativeSign = (value) => {
-    return '-' === value;
-  };
-
   const handleNegativeSign = () => {
     setInput((input) => {
       return input === '0'
