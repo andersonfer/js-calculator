@@ -24,9 +24,15 @@ function App() {
   };
 
   const handleNumberClick = (e) => {
-    const value = e.target.value;
-    setInput((input) => {
-      return input === '0' || shouldResetDisplay ? value : input.concat(value);
+    const number = e.target.value;
+    setInput((currentInput) => {
+      if(currentInput === '0' || shouldResetDisplay) {
+        // Replace the input with the new number
+        return number;
+      } else {
+        // Concatenate the new number to the current input
+        return currentInput.concat(number);
+      }
     });
     setShouldResetDisplay(false);
   };
