@@ -41,15 +41,13 @@ function App() {
     const selectedOperator = e.target.value;
 
     setInput((currentInput) => {
-
-      if(endsWithNumber(currentInput)) {
-        return currentInput.concat(selectedOperator);
-      } else if(endsWithTwoOperators(currentInput)) {
-        return replaceLastTwoOperators(currentInput,selectedOperator);
-      // It can be an operator or a decimal sign
-      } else {
-        return replaceLastChar(currentInput,selectedOperator);
-      }
+      return (
+        endsWithNumber(currentInput)?
+        currentInput.concat(selectedOperator):
+        endsWithTwoOperators(currentInput)?
+        replaceLastTwoOperators(currentInput,selectedOperator):
+        replaceLastChar(currentInput,selectedOperator)
+      );
     });
     setShouldResetDisplay(false);
   };
