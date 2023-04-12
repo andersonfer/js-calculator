@@ -100,11 +100,17 @@ function App() {
 
   const handleEqualsClick = () => {
     const parser = mathjs.parser();
-    setInput((input) => {
-      return isNumber(input[input.length - 1])
-        ? parser.evaluate(input).toString().substr(0, MAX_DISPLAY_LENGTH)
-        : '0';
-    });
+    const lastChar = input[input.length - 1];
+    const isLastCharNumber = isNumber(lastChar);
+
+    if(isLastCharNumber) {
+      const result =
+              parser.evaluate(input).toString().substr(0, MAX_DISPLAY_LENGTH)
+      setInput(result);
+    } else {
+      setInput('0');
+    }
+
     setShouldResetDisplay(true);
   };
 
