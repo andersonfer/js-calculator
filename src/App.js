@@ -43,7 +43,7 @@ function App() {
     setShouldResetDisplay(false);
   };
 
-  const handleNegativeSign = () => {
+  const handleMinusSign = () => {
     setInput((input) => {
       return input === '0'
         ? '-'
@@ -106,7 +106,7 @@ function App() {
         <button id="nine" value="9" className="key" onClick={handleNumberClick}>
           9
         </button>
-        <button id="subtract" value="-" className="key" onClick={handleNegativeSign}>
+        <button id="subtract" value="-" className="key" onClick={handleMinusSign}>
           -
         </button>
         <button id="four" value="4"  className="key" onClick={handleNumberClick}>
