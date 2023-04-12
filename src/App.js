@@ -19,9 +19,7 @@ function App() {
     const {value} = e.target;
     return isNegativeSign(value)
         ? updateNegativeSign(value)
-        : isOperator(value)
-        ? updateOperator(value)
-        : updateNumber(value);
+        : updateOperator(value);
   };
 
   const hasReachedMaximumLength = (input) => {
@@ -85,7 +83,8 @@ function App() {
     return ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(value);
   };
 
-  const updateNumber = (value) => {
+  const handleNumberClick = (e) => {
+    const value = e.target.value;
     setInput((state) => {
       return state === '0' || resetExpression ? value : state.concat(value);
     });
@@ -109,25 +108,25 @@ function App() {
         <button id="multiply" value="*" className="key" onClick={updateDisplay}>
           *
         </button>
-        <button id="seven" value="7" className="key" onClick={updateDisplay}>
+        <button id="seven" value="7" className="key" onClick={handleNumberClick}>
           7
         </button>
-        <button id="eight" value="8" className="key" onClick={updateDisplay}>
+        <button id="eight" value="8" className="key" onClick={handleNumberClick}>
           8
         </button>
-        <button id="nine" value="9" className="key" onClick={updateDisplay}>
+        <button id="nine" value="9" className="key" onClick={handleNumberClick}>
           9
         </button>
         <button id="subtract" value="-" className="key" onClick={updateDisplay}>
           -
         </button>
-        <button id="four" value="4"  className="key" onClick={updateDisplay}>
+        <button id="four" value="4"  className="key" onClick={handleNumberClick}>
           4
         </button>
-        <button id="five" value="5" className="key" onClick={updateDisplay}>
+        <button id="five" value="5" className="key" onClick={handleNumberClick}>
           5
         </button>
-        <button id="six" value="6" className="key" onClick={updateDisplay}>
+        <button id="six" value="6" className="key" onClick={handleNumberClick}>
           6
         </button>
         <button id="add" value="+" className="key" onClick={updateDisplay}>
@@ -135,16 +134,16 @@ function App() {
         </button>
         <div id="double-row">
           <div id="first-column">
-            <button id="one" value="1" className="key" onClick={updateDisplay}>
+            <button id="one" value="1" className="key" onClick={handleNumberClick}>
               1
             </button>
-            <button id="two" value="2" className="key" onClick={updateDisplay}>
+            <button id="two" value="2" className="key" onClick={handleNumberClick}>
               2
             </button>
-            <button id="three" value="3" className="key" onClick={updateDisplay}>
+            <button id="three" value="3" className="key" onClick={handleNumberClick}>
               3
             </button>
-            <button id="zero" value="0" className="key double-width" onClick={updateDisplay}>
+            <button id="zero" value="0" className="key double-width" onClick={handleNumberClick}>
               0
             </button>
             <button id="decimal" value="." className="key" onClick={handleDecimalClick}>
