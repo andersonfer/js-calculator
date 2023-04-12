@@ -15,25 +15,27 @@ function App() {
     }
   },[input]);
 
+  const hasReachedMaximumLength = (input) => {
+    return input.length > MAX_DISPLAY_LENGTH;
+  };
+
+  const handleClearClick = () => {
+    setInput('0');
+  };
+
+  const handleNumberClick = (e) => {
+    const value = e.target.value;
+    setInput((state) => {
+      return state === '0' || resetExpression ? value : state.concat(value);
+    });
+    setResetExpression(false);
+  };
+
   const handleOperatorClick = (e) => {
     const {value} = e.target;
     return isNegativeSign(value)
         ? updateNegativeSign(value)
         : updateOperator(value);
-  };
-
-  const hasReachedMaximumLength = (input) => {
-    return input.length > MAX_DISPLAY_LENGTH;
-  };
-
-  const handleEqualsClick = () => {
-    const parser = mathjs.parser();
-    setInput((state) => {
-      return isNumber(state[state.length - 1])
-        ? parser.evaluate(state).toString().substr(0, MAX_DISPLAY_LENGTH)
-        : '0';
-    });
-    setResetExpression(true);
   };
 
   const isNegativeSign = (value) => {
@@ -53,6 +55,10 @@ function App() {
     setResetExpression(false);
   };
 
+  const isNumber = (value) => {
+    return ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(value);
+  };
+
   const isOperator = (value) => {
     return ['+', '*', '-', '/'].includes(value);
   };
@@ -68,7 +74,6 @@ function App() {
     setResetExpression(false);
   };
 
-
   const handleDecimalClick = () => {
     const lastNumber = input.split(/\+|-|\*|\//).pop();
     if (lastNumber && lastNumber.indexOf('.') === -1) {
@@ -79,20 +84,14 @@ function App() {
     }
   };
 
-  const isNumber = (value) => {
-    return ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(value);
-  };
-
-  const handleNumberClick = (e) => {
-    const value = e.target.value;
+  const handleEqualsClick = () => {
+    const parser = mathjs.parser();
     setInput((state) => {
-      return state === '0' || resetExpression ? value : state.concat(value);
+      return isNumber(state[state.length - 1])
+        ? parser.evaluate(state).toString().substr(0, MAX_DISPLAY_LENGTH)
+        : '0';
     });
-    setResetExpression(false);
-  };
-
-  const handleClearClick = () => {
-    setInput('0');
+    setResetExpression(true);
   };
 
   return (
