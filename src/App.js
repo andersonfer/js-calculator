@@ -14,9 +14,7 @@ function App() {
       setInput('MAX');
       setResetExpression(true);
     } else {
-      isEqualSign(value)
-        ? evaluateExpression()
-        : isNegativeSign(value)
+        isNegativeSign(value)
         ? updateNegativeSign(value)
         : isOperator(value)
         ? updateOperator(value)
@@ -30,11 +28,7 @@ function App() {
     return input.length >= MAX_DISPLAY_LENGTH;
   };
 
-  const isEqualSign = (value) => {
-    return '=' === value;
-  };
-
-  const evaluateExpression = () => {
+  const handleEqualsClick = () => {
     const parser = mathjs.parser();
     setInput((state) => {
       return isNumber(state[state.length - 1])
@@ -161,7 +155,7 @@ function App() {
             </button>
           </div>
           <div id="second-column">
-            <button id="equals" value="=" className="key" onClick={updateDisplay}>
+            <button id="equals" value="=" className="key" onClick={handleEqualsClick}>
               =
             </button>
           </div>
