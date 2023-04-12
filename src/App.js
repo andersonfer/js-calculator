@@ -106,7 +106,7 @@ function App() {
 
   return (
     <div id="calculator">
-      <Display input={input} />
+      <div id="display" data-testid="display">{input}</div>
       <NumPad onClick={updateDisplay} onClear={clearDisplay} />
     </div>
   );
