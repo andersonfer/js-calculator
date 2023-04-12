@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import './App.css';
 import * as mathjs from "mathjs";
 
@@ -8,22 +8,24 @@ function App() {
   const [input, setInput] = useState('0');
   const [resetExpression, setResetExpression] = useState(false);
 
-  const updateDisplay = (e) => {
-    const {value} = e.target;
+  useEffect(() => {
     if (hasReachedMaximumLength(input)) {
       setInput('MAX');
       setResetExpression(true);
-    } else {
-        isNegativeSign(value)
+    }
+  },[input]);
+
+  const updateDisplay = (e) => {
+    const {value} = e.target;
+    return isNegativeSign(value)
         ? updateNegativeSign(value)
         : isOperator(value)
         ? updateOperator(value)
         : updateNumber(value);
-    }
   };
 
   const hasReachedMaximumLength = (input) => {
-    return input.length >= MAX_DISPLAY_LENGTH;
+    return input.length > MAX_DISPLAY_LENGTH;
   };
 
   const handleEqualsClick = () => {
