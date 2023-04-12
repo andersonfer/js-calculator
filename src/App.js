@@ -6,12 +6,12 @@ export const MAX_DISPLAY_LENGTH = 15;
 
 function App() {
   const [input, setInput] = useState('0');
-  const [resetExpression, setResetExpression] = useState(false);
+  const [shouldResetDisplay, setShouldResetDisplay] = useState(false);
 
   useEffect(() => {
     if (hasReachedMaximumLength(input)) {
       setInput('MAX_LENGTH_REACHED');
-      setResetExpression(true);
+      setShouldResetDisplay(true);
     }
   },[input]);
 
@@ -26,9 +26,9 @@ function App() {
   const handleNumberClick = (e) => {
     const value = e.target.value;
     setInput((state) => {
-      return state === '0' || resetExpression ? value : state.concat(value);
+      return state === '0' || shouldResetDisplay ? value : state.concat(value);
     });
-    setResetExpression(false);
+    setShouldResetDisplay(false);
   };
 
   const handleOperatorClick = (e) => {
@@ -40,7 +40,7 @@ function App() {
         ? state.substr(0, state.length - 2).concat(value)
         : state.substr(0, state.length - 1).concat(value);
     });
-    setResetExpression(false);
+    setShouldResetDisplay(false);
   };
 
   const isNegativeSign = (value) => {
@@ -57,7 +57,7 @@ function App() {
         ? state.concat('-')
         : state;
     });
-    setResetExpression(false);
+    setShouldResetDisplay(false);
   };
 
   const isNumber = (value) => {
@@ -74,7 +74,7 @@ function App() {
       setInput((state) => {
         return state.concat('.');
       });
-      setResetExpression(false);
+      setShouldResetDisplay(false);
     }
   };
 
@@ -85,7 +85,7 @@ function App() {
         ? parser.evaluate(state).toString().substr(0, MAX_DISPLAY_LENGTH)
         : '0';
     });
-    setResetExpression(true);
+    setShouldResetDisplay(true);
   };
 
   return (
