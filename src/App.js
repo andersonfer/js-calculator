@@ -33,23 +33,21 @@ function App() {
 
   const handleOperatorClick = (e) => {
     const {value} = e.target;
-    return isNegativeSign(value)
-        ? updateNegativeSign(value)
-        : updateOperator(value);
+    return updateOperator(value);
   };
 
   const isNegativeSign = (value) => {
     return '-' === value;
   };
 
-  const updateNegativeSign = (value) => {
+  const handleNegativeSign = () => {
     setInput((state) => {
       return state === '0'
-        ? value
+        ? '-'
         : isNumber(state[state.length - 1])
-        ? state.concat(value)
+        ? state.concat('-')
         : isOperator(state[state.length - 1]) && isNumber(state[state.length - 2])
-        ? state.concat(value)
+        ? state.concat('-')
         : state;
     });
     setResetExpression(false);
@@ -116,7 +114,7 @@ function App() {
         <button id="nine" value="9" className="key" onClick={handleNumberClick}>
           9
         </button>
-        <button id="subtract" value="-" className="key" onClick={handleOperatorClick}>
+        <button id="subtract" value="-" className="key" onClick={handleNegativeSign}>
           -
         </button>
         <button id="four" value="4"  className="key" onClick={handleNumberClick}>
