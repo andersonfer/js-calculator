@@ -24,16 +24,19 @@ function App() {
   };
 
   const handleNumberClick = (e) => {
-    const number = e.target.value;
+    const clickedNumber = e.target.value;
+
     setInput((currentInput) => {
-      if(currentInput === '0' || shouldResetDisplay) {
-        // Replace the input with the new number
-        return number;
-      } else {
-        // Concatenate the new number to the current input
-        return currentInput.concat(number);
-      }
+      const isFirstInput = currentInput === '0';
+      const shouldReplaceInput = isFirstInput || shouldResetDisplay;
+
+      return (
+        shouldReplaceInput ?
+        clickedNumber :
+        currentInput + clickedNumber
+      );
     });
+
     setShouldResetDisplay(false);
   };
 
