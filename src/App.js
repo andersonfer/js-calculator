@@ -25,20 +25,20 @@ function App() {
 
   const handleNumberClick = (e) => {
     const value = e.target.value;
-    setInput((state) => {
-      return state === '0' || shouldResetDisplay ? value : state.concat(value);
+    setInput((input) => {
+      return input === '0' || shouldResetDisplay ? value : input.concat(value);
     });
     setShouldResetDisplay(false);
   };
 
   const handleOperatorClick = (e) => {
     const value = e.target.value;
-    setInput((state) => {
-      return state !== 0 && isNumber(state[state.length - 1])
-        ? state.concat(value)
-        : isOperator(state[state.length - 1]) && isOperator(state[state.length - 2])
-        ? state.substr(0, state.length - 2).concat(value)
-        : state.substr(0, state.length - 1).concat(value);
+    setInput((input) => {
+      return input !== 0 && isNumber(input[input.length - 1])
+        ? input.concat(value)
+        : isOperator(input[input.length - 1]) && isOperator(input[input.length - 2])
+        ? input.substr(0, input.length - 2).concat(value)
+        : input.substr(0, input.length - 1).concat(value);
     });
     setShouldResetDisplay(false);
   };
@@ -48,14 +48,14 @@ function App() {
   };
 
   const handleNegativeSign = () => {
-    setInput((state) => {
-      return state === '0'
+    setInput((input) => {
+      return input === '0'
         ? '-'
-        : isNumber(state[state.length - 1])
-        ? state.concat('-')
-        : isOperator(state[state.length - 1]) && isNumber(state[state.length - 2])
-        ? state.concat('-')
-        : state;
+        : isNumber(input[input.length - 1])
+        ? input.concat('-')
+        : isOperator(input[input.length - 1]) && isNumber(input[input.length - 2])
+        ? input.concat('-')
+        : input;
     });
     setShouldResetDisplay(false);
   };
@@ -71,8 +71,8 @@ function App() {
   const handleDecimalClick = () => {
     const lastNumber = input.split(/\+|-|\*|\//).pop();
     if (lastNumber && lastNumber.indexOf('.') === -1) {
-      setInput((state) => {
-        return state.concat('.');
+      setInput((input) => {
+        return input.concat('.');
       });
       setShouldResetDisplay(false);
     }
@@ -80,9 +80,9 @@ function App() {
 
   const handleEqualsClick = () => {
     const parser = mathjs.parser();
-    setInput((state) => {
-      return isNumber(state[state.length - 1])
-        ? parser.evaluate(state).toString().substr(0, MAX_DISPLAY_LENGTH)
+    setInput((input) => {
+      return isNumber(input[input.length - 1])
+        ? parser.evaluate(input).toString().substr(0, MAX_DISPLAY_LENGTH)
         : '0';
     });
     setShouldResetDisplay(true);
