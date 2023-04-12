@@ -9,20 +9,20 @@ function App() {
   const [resetExpression, setResetExpression] = useState(false);
 
   const updateDisplay = (e) => {
-    const key = e.target.value;
+    const {value} = e.target;
     if (hasReachedMaximumLength(input)) {
       setInput('MAX');
       setResetExpression(true);
     } else {
-      isEqualSign(key)
+      isEqualSign(value)
         ? evaluateExpression()
-        : isNegativeSign(key)
-        ? updateNegativeSign(key)
-        : isOperator(key)
-        ? updateOperator(key)
-        : isDecimal(key)
-        ? updateDecimal(key)
-        : updateNumber(key);
+        : isNegativeSign(value)
+        ? updateNegativeSign(value)
+        : isOperator(value)
+        ? updateOperator(value)
+        : isDecimal(value)
+        ? updateDecimal(value)
+        : updateNumber(value);
     }
   };
 
@@ -30,8 +30,8 @@ function App() {
     return input.length >= MAX_DISPLAY_LENGTH;
   };
 
-  const isEqualSign = (key) => {
-    return '=' === key;
+  const isEqualSign = (value) => {
+    return '=' === value;
   };
 
   const evaluateExpression = () => {
@@ -44,59 +44,59 @@ function App() {
     setResetExpression(true);
   };
 
-  const isNegativeSign = (key) => {
-    return '-' === key;
+  const isNegativeSign = (value) => {
+    return '-' === value;
   };
 
-  const updateNegativeSign = (key) => {
+  const updateNegativeSign = (value) => {
     setInput((state) => {
       return state === 0
-        ? key
+        ? value
         : isNumber(state[state.length - 1])
-        ? state.concat(key)
+        ? state.concat(value)
         : isOperator(state[state.length - 1]) && isNumber(state[state.length - 2])
-        ? state.concat(key)
+        ? state.concat(value)
         : state;
     });
     setResetExpression(false);
   };
 
-  const isOperator = (key) => {
-    return ['+', '*', '-', '/'].includes(key);
+  const isOperator = (value) => {
+    return ['+', '*', '-', '/'].includes(value);
   };
 
-  const updateOperator = (key) => {
+  const updateOperator = (value) => {
     setInput((state) => {
       return state != 0 && isNumber(state[state.length - 1])
-        ? state.concat(key)
+        ? state.concat(value)
         : isOperator(state[state.length - 1]) && isOperator(state[state.length - 2])
-        ? state.substr(0, state.length - 2).concat(key)
-        : state.substr(0, state.length - 1).concat(key);
+        ? state.substr(0, state.length - 2).concat(value)
+        : state.substr(0, state.length - 1).concat(value);
     });
     setResetExpression(false);
   };
 
-  const isDecimal = (key) => {
-    return key === '.';
+  const isDecimal = (value) => {
+    return value === '.';
   };
 
-  const updateDecimal = (key) => {
+  const updateDecimal = (value) => {
     const lastNumber = input.split(/\+|-|\*|\//).pop();
-    if (lastNumber && lastNumber.indexOf(key) === -1) {
+    if (lastNumber && lastNumber.indexOf(value) === -1) {
       setInput((state) => {
-        return state.concat(key);
+        return state.concat(value);
       });
       setResetExpression(false);
     }
   };
 
-  const isNumber = (key) => {
-    return ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(key);
+  const isNumber = (value) => {
+    return ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(value);
   };
 
-  const updateNumber = (key) => {
+  const updateNumber = (value) => {
     setInput((state) => {
-      return state === '0' || resetExpression ? key : state.concat(key);
+      return state === '0' || resetExpression ? value : state.concat(value);
     });
     setResetExpression(false);
   };
