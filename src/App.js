@@ -15,7 +15,7 @@ function App() {
     }
   },[input]);
 
-  const updateDisplay = (e) => {
+  const handleOperatorClick = (e) => {
     const {value} = e.target;
     return isNegativeSign(value)
         ? updateNegativeSign(value)
@@ -102,10 +102,10 @@ function App() {
         <button id="clear" className="key double-width" onClick={clearDisplay}>
           AC
         </button>
-        <button id="divide" value="/" className="key" onClick={updateDisplay}>
+        <button id="divide" value="/" className="key" onClick={handleOperatorClick}>
           {'/'}
         </button>
-        <button id="multiply" value="*" className="key" onClick={updateDisplay}>
+        <button id="multiply" value="*" className="key" onClick={handleOperatorClick}>
           *
         </button>
         <button id="seven" value="7" className="key" onClick={handleNumberClick}>
@@ -117,7 +117,7 @@ function App() {
         <button id="nine" value="9" className="key" onClick={handleNumberClick}>
           9
         </button>
-        <button id="subtract" value="-" className="key" onClick={updateDisplay}>
+        <button id="subtract" value="-" className="key" onClick={handleOperatorClick}>
           -
         </button>
         <button id="four" value="4"  className="key" onClick={handleNumberClick}>
@@ -129,7 +129,7 @@ function App() {
         <button id="six" value="6" className="key" onClick={handleNumberClick}>
           6
         </button>
-        <button id="add" value="+" className="key" onClick={updateDisplay}>
+        <button id="add" value="+" className="key" onClick={handleOperatorClick}>
           +
         </button>
         <div id="double-row">
