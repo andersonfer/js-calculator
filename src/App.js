@@ -34,11 +34,17 @@ function App() {
   const handleOperatorClick = (e) => {
     const operator = e.target.value;
     setInput((currentInput) => {
-      return currentInput !== 0 && isNumber(currentInput[currentInput.length - 1])
-        ? currentInput.concat(operator)
-        : isOperator(currentInput[currentInput.length - 1]) && isOperator(currentInput[currentInput.length - 2])
-        ? currentInput.substr(0, currentInput.length - 2).concat(operator)
-        : currentInput.substr(0, currentInput.length - 1).concat(operator);
+      // If the last input is a number, concatenate the operator to the end of the input
+      if(currentInput !== 0 && isNumber(currentInput[currentInput.length - 1])) {
+        return currentInput.concat(operator);
+      // If the last two inputs are operators, replace them with the new operator
+      } else if(isOperator(currentInput[currentInput.length - 1])
+                  && isOperator(currentInput[currentInput.length - 2])) {
+        return currentInput.substr(0, currentInput.length - 2).concat(operator);
+      // Otherwise, replace the last operator with the new operator
+      } else {
+        return currentInput.substr(0, currentInput.length - 1).concat(operator);
+      }
     });
     setShouldResetDisplay(false);
   };
