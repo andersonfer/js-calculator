@@ -186,5 +186,30 @@ it('should handle negative number operations', async() => {
 
 });
 
+it('should not accept division by zero', async() => {
+  render(<App />)
+
+  const divisionBtn = screen.getByRole('button',{name: '/'});
+  const zeroBtn = screen.getByRole('button',{name: '0'});
+  const equalsBtn = screen.getByRole('button',{name: '='});
+  const clearBtn = screen.getByRole('button',{name: 'AC'});
+
+  await userEvent.click(getRandomNumber());
+  await userEvent.click(divisionBtn);
+  await userEvent.click(zeroBtn);
+  await userEvent.click(equalsBtn);
+
+
+  expect(screen.getByTestId('display').textContent).toEqual('Infinity');
+
+  await userEvent.click(clearBtn);
+
+  await userEvent.click(zeroBtn);
+  await userEvent.click(divisionBtn);
+  await userEvent.click(zeroBtn);
+  await userEvent.click(equalsBtn);
+
+  expect(screen.getByTestId('display').textContent).toEqual('NaN');
+});
 
 
