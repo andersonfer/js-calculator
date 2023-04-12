@@ -38,22 +38,40 @@ function App() {
   };
 
   const handleOperatorClick = (e) => {
-    const operator = e.target.value;
+    const selectedOperator = e.target.value;
+
     setInput((currentInput) => {
-      // If the last input is a number, concatenate the operator to the end of the input
-      if(currentInput !== 0 && isNumber(currentInput[currentInput.length - 1])) {
-        return currentInput.concat(operator);
-      // If the last two inputs are operators, replace them with the new operator
-      } else if(isOperator(currentInput[currentInput.length - 1])
-                  && isOperator(currentInput[currentInput.length - 2])) {
-        return currentInput.substr(0, currentInput.length - 2).concat(operator);
-      // Otherwise, replace the last operator with the new operator
+
+      if(endsWithNumber(currentInput)) {
+        return currentInput.concat(selectedOperator);
+      } else if(endsWithTwoOperators(currentInput)) {
+        return replaceLastTwoOperators(currentInput,selectedOperator);
+      // It can be an operator or a decimal sign
       } else {
-        return currentInput.substr(0, currentInput.length - 1).concat(operator);
+        return replaceLastChar(currentInput,selectedOperator);
       }
     });
     setShouldResetDisplay(false);
   };
+
+  const endsWithNumber = (str) => {
+    return str !== 0 && isNumber(str[str.length - 1])
+  }
+
+  const endsWithTwoOperators = (str) => {
+    return (
+      isOperator(str[str.length - 1]) &&
+      isOperator(str[str.length - 2])
+    );
+  }
+
+  const replaceLastTwoOperators = (str, newOperator) => {
+    return str.substr(0, str.length - 2).concat(newOperator);
+  }
+
+  const replaceLastChar = (str, newOperator) => {
+    return str.substr(0, str.length - 1).concat(newOperator);
+  }
 
   const handleMinusSign = () => {
     setInput((currentInput) => {
