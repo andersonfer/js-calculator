@@ -69,7 +69,7 @@ function App() {
   };
 
 
-  const handleDecimal = () => {
+  const handleDecimalClick = () => {
     const lastNumber = input.split(/\+|-|\*|\//).pop();
     if (lastNumber && lastNumber.indexOf('.') === -1) {
       setInput((state) => {
@@ -145,7 +145,7 @@ function App() {
             <button id="zero" value="0" className="key double-width" onClick={updateDisplay}>
               0
             </button>
-            <button id="decimal" value="." className="key" onClick={handleDecimal}>
+            <button id="decimal" value="." className="key" onClick={handleDecimalClick}>
               .
             </button>
           </div>
