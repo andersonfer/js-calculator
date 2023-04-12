@@ -8,7 +8,8 @@ function App() {
   const [input, setInput] = useState('0');
   const [resetExpression, setResetExpression] = useState(false);
 
-  const updateDisplay = (key) => {
+  const updateDisplay = (e) => {
+    const key = e.target.value;
     if (hasReachedMaximumLength(input)) {
       setInput('MAX');
       setResetExpression(true);
@@ -107,87 +108,68 @@ function App() {
   return (
     <div id="calculator">
       <div id="display" data-testid="display">{input}</div>
-      <NumPad onClick={updateDisplay} onClear={clearDisplay} />
-    </div>
-  );
-}
-
-function Display({input}){
-  return (
-    <div id="display" data-testid="display">{input}</div>
-  );
-}
-
-function NumPad({onClick, onClear}){
-  function clear(){
-    onClear();
-  }
-
-  function update(e){
-    onClick(e.target.innerHTML);
-  }
-  return (
-    <div id="numpad">
-      <button id="clear" className="key double-width" onClick={clear}>
-        AC
-      </button>
-      <button id="divide" className="key" onClick={update}>
-        /
-      </button>
-      <button id="multiply" className="key" onClick={update}>
-        *
-      </button>
-      <button id="seven" className="key" onClick={update}>
-        7
-      </button>
-      <button id="eight" className="key" onClick={update}>
-        8
-      </button>
-      <button id="nine" className="key" onClick={update}>
-        9
-      </button>
-      <button id="subtract" className="key" onClick={update}>
-        -
-      </button>
-      <button id="four" className="key" onClick={update}>
-        4
-      </button>
-      <button id="five" className="key" onClick={update}>
-        5
-      </button>
-      <button id="six" className="key" onClick={update}>
-        6
-      </button>
-      <button id="add" className="key" onClick={update}>
-        +
-      </button>
-      <div id="double-row">
-        <div id="first-column">
-          <button id="one" className="key" onClick={update}>
-            1
-          </button>
-          <button id="two" className="key" onClick={update}>
-            2
-          </button>
-          <button id="three" className="key" onClick={update}>
-            3
-          </button>
-
-          <button id="zero" className="key double-width" onClick={update}>
-            0
-          </button>
-          <button id="decimal" className="key" onClick={update}>
-            .
-          </button>
-        </div>
-        <div id="second-column">
-          <button id="equals" className="key" onClick={update}>
-            =
-          </button>
+      <div id="numpad">
+        <button id="clear" className="key double-width" onClick={clearDisplay}>
+          AC
+        </button>
+        <button id="divide" value="/" className="key" onClick={updateDisplay}>
+          {'/'}
+        </button>
+        <button id="multiply" value="*" className="key" onClick={updateDisplay}>
+          *
+        </button>
+        <button id="seven" value="7" className="key" onClick={updateDisplay}>
+          7
+        </button>
+        <button id="eight" value="8" className="key" onClick={updateDisplay}>
+          8
+        </button>
+        <button id="nine" value="9" className="key" onClick={updateDisplay}>
+          9
+        </button>
+        <button id="subtract" value="-" className="key" onClick={updateDisplay}>
+          -
+        </button>
+        <button id="four" value="4"  className="key" onClick={updateDisplay}>
+          4
+        </button>
+        <button id="five" value="5" className="key" onClick={updateDisplay}>
+          5
+        </button>
+        <button id="six" value="6" className="key" onClick={updateDisplay}>
+          6
+        </button>
+        <button id="add" value="+" className="key" onClick={updateDisplay}>
+          +
+        </button>
+        <div id="double-row">
+          <div id="first-column">
+            <button id="one" value="1" className="key" onClick={updateDisplay}>
+              1
+            </button>
+            <button id="two" value="2" className="key" onClick={updateDisplay}>
+              2
+            </button>
+            <button id="three" value="3" className="key" onClick={updateDisplay}>
+              3
+            </button>
+            <button id="zero" value="0" className="key double-width" onClick={updateDisplay}>
+              0
+            </button>
+            <button id="decimal" value="." className="key" onClick={updateDisplay}>
+              .
+            </button>
+          </div>
+          <div id="second-column">
+            <button id="equals" value="=" className="key" onClick={updateDisplay}>
+              =
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
 
 export default App;
