@@ -44,7 +44,7 @@ function App() {
 
   const updateNegativeSign = (value) => {
     setInput((state) => {
-      return state === 0
+      return state === '0'
         ? value
         : isNumber(state[state.length - 1])
         ? state.concat(value)
