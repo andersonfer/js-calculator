@@ -212,4 +212,26 @@ it('should not accept division by zero', async() => {
   expect(screen.getByTestId('display').textContent).toEqual('NaN');
 });
 
+it('should not accept malformed expressions', async() => {
+  render(<App />)
+
+  const decimalBtn = screen.getByRole('button',{name: '.'});
+  const equalsBtn = screen.getByRole('button',{name: '='});
+
+
+  // Expression ended by an operator
+  await userEvent.click(getRandomNumber());
+  await userEvent.click(getRandomOperator());
+  await userEvent.click(equalsBtn);
+
+  expect(screen.getByTestId('display').textContent).toEqual('0');
+
+  // Expression ended by a decimal
+  await userEvent.click(getRandomNumber());
+  await userEvent.click(decimalBtn);
+  await userEvent.click(equalsBtn);
+
+  expect(screen.getByTestId('display').textContent).toEqual('0');
+
+});
 
