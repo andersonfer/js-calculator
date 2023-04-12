@@ -84,10 +84,15 @@ function App() {
   };
 
   const handleDecimalClick = () => {
-    const lastNumber = input.split(/\+|-|\*|\//).pop();
-    if (lastNumber && lastNumber.indexOf('.') === -1) {
-      setInput((input) => {
-        return input.concat('.');
+    // The last number is the one that comes after the last operator
+    // If there's no operator it works too
+    const lastNumberInDisplay = input.split(/\+|-|\*|\//).pop();
+    const isDecimalAlreadyPresent =
+            lastNumberInDisplay && lastNumberInDisplay.indexOf('.') !== -1;
+    // If the last number does not already contain a decimal, add one to the input
+    if (!isDecimalAlreadyPresent) {
+      setInput((currentInput) => {
+        return currentInput.concat('.');
       });
       setShouldResetDisplay(false);
     }
