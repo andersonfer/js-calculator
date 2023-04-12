@@ -18,8 +18,6 @@ function App() {
         ? updateNegativeSign(value)
         : isOperator(value)
         ? updateOperator(value)
-        : isDecimal(value)
-        ? updateDecimal(value)
         : updateNumber(value);
     }
   };
@@ -70,15 +68,12 @@ function App() {
     setResetExpression(false);
   };
 
-  const isDecimal = (value) => {
-    return value === '.';
-  };
 
-  const updateDecimal = (value) => {
+  const handleDecimal = () => {
     const lastNumber = input.split(/\+|-|\*|\//).pop();
-    if (lastNumber && lastNumber.indexOf(value) === -1) {
+    if (lastNumber && lastNumber.indexOf('.') === -1) {
       setInput((state) => {
-        return state.concat(value);
+        return state.concat('.');
       });
       setResetExpression(false);
     }
@@ -150,7 +145,7 @@ function App() {
             <button id="zero" value="0" className="key double-width" onClick={updateDisplay}>
               0
             </button>
-            <button id="decimal" value="." className="key" onClick={updateDisplay}>
+            <button id="decimal" value="." className="key" onClick={handleDecimal}>
               .
             </button>
           </div>
